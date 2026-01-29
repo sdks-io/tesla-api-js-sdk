@@ -7,9 +7,9 @@
 import { Schema, stringEnum } from '../schema.js';
 
 /**
- * Enum for OAuthScopeOauth2
+ * Enum for OAuthScopeThirdpartytoken
  */
-export enum OAuthScopeOauth2 {
+export enum OAuthScopeThirdpartytoken {
   Openid = 'openid',
   OfflineAccess = 'offline_access',
   UserData = 'user_data',
@@ -24,8 +24,8 @@ export enum OAuthScopeOauth2 {
 }
 
 /**
- * Schema for OAuthScopeOauth2
+ * Schema for OAuthScopeThirdpartytoken
  */
-export const oAuthScopeOauth2Schema: Schema<OAuthScopeOauth2> = stringEnum(
-  OAuthScopeOauth2
+export const oAuthScopeThirdpartytokenSchema: Schema<OAuthScopeThirdpartytoken> = stringEnum(
+  OAuthScopeThirdpartytoken
 );

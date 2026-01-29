@@ -28,7 +28,7 @@ export class UserController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<BackupResponse>> {
     const req = this.createRequest('GET', '/api/1/users/feature_config');
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(backupResponseSchema, requestOptions);
   }
 
@@ -39,7 +39,7 @@ export class UserController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<MeResponse>> {
     const req = this.createRequest('GET', '/api/1/users/me');
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(meResponseSchema, requestOptions);
   }
 
@@ -50,7 +50,7 @@ export class UserController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<OrdersResponse>> {
     const req = this.createRequest('GET', '/api/1/users/orders');
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(ordersResponseSchema, requestOptions);
   }
 
@@ -61,7 +61,7 @@ export class UserController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<RegionResponse>> {
     const req = this.createRequest('GET', '/api/1/users/region');
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(regionResponseSchema, requestOptions);
   }
 }

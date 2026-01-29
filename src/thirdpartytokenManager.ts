@@ -8,14 +8,14 @@ import { isExpired, isValid } from './authentication.js';
 import { OAuthToken } from './models/oAuthToken.js';
 import { ClientInterface } from './clientInterface.js';
 import { OAuthAuthorizationController } from './controllers/oAuthAuthorizationController.js';
-import { OAuthScopeOauth2 } from './models/oAuthScopeOauth2.js';
+import { OAuthScopeThirdpartytoken } from './models/oAuthScopeThirdpartytoken.js';
 
-export class Oauth2Manager {
+export class ThirdpartytokenManager {
   private _oAuthClientId: string;
   private _oAuthClientSecret: string;
   private _oAuthRedirectUri: string;
   private _oAuthToken?: OAuthToken;
-  private _oAuthScopes?: OAuthScopeOauth2[];
+  private _oAuthScopes?: OAuthScopeThirdpartytoken[];
   private _oAuthClockSkew?: number;
   private _oAuthController: OAuthAuthorizationController;
   private _baseUri: string;
@@ -33,7 +33,7 @@ export class Oauth2Manager {
       oAuthClientSecret: string;
       oAuthRedirectUri: string;
       oAuthToken?: OAuthToken;
-      oAuthScopes?: OAuthScopeOauth2[];
+      oAuthScopes?: OAuthScopeThirdpartytoken[];
       oAuthClockSkew?: number;
     },
     baseUri: string,
@@ -100,7 +100,7 @@ export class Oauth2Manager {
       this._oAuthClientId,
       this._oAuthClientSecret
     );
-    const { result } = await this._oAuthController.requestTokenOauth2(
+    const { result } = await this._oAuthController.requestTokenThirdpartytoken(
       authorization,
       authorizationCode,
       this._oAuthRedirectUri,
@@ -119,7 +119,7 @@ export class Oauth2Manager {
       this._oAuthClientId,
       this._oAuthClientSecret
     );
-    const { result } = await this._oAuthController.refreshTokenOauth2(
+    const { result } = await this._oAuthController.refreshTokenThirdpartytoken(
       authorization,
       this._oAuthToken?.refreshToken,
       this._oAuthScopes?.join(' '),

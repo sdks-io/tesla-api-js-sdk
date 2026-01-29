@@ -77,7 +77,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/backup`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(backupResponseSchema, requestOptions);
   }
 
@@ -114,7 +114,7 @@ export class EnergyController extends BaseController {
     req.query('period', mapped.period);
     req.query('time_zone', mapped.timeZone);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/calendar_history`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(calendarHistoryResponseSchema, requestOptions);
   }
 
@@ -147,7 +147,7 @@ export class EnergyController extends BaseController {
     req.query('end_date', mapped.endDate);
     req.query('time_zone', mapped.timeZone);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/telemetry_history`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(chargeHistoryResponseSchema, requestOptions);
   }
 
@@ -162,7 +162,7 @@ export class EnergyController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ energySiteId: [energySiteId, string()] });
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/live_status`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(liveStatusResponseSchema, requestOptions);
   }
 
@@ -184,7 +184,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/operation`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(genericUpdateResponseSchema, requestOptions);
   }
 
@@ -206,7 +206,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/grid_import_export`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(genericUpdateResponseSchema, requestOptions);
   }
 
@@ -228,7 +228,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/off_grid_vehicle_charging_reserve`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(genericUpdateResponseSchema, requestOptions);
   }
 
@@ -250,7 +250,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/storm_mode`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(genericUpdateResponseSchema, requestOptions);
   }
 
@@ -272,7 +272,7 @@ export class EnergyController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/time_of_use_settings`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(genericUpdateResponseSchema, requestOptions);
   }
 
@@ -283,7 +283,7 @@ export class EnergyController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ProductsResponse>> {
     const req = this.createRequest('GET', '/api/1/products');
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(productsResponseSchema, requestOptions);
   }
 
@@ -298,7 +298,7 @@ export class EnergyController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ energySiteId: [energySiteId, string()] });
     req.appendTemplatePath`/api/1/energy_sites/${mapped.energySiteId}/site_info`;
-    req.authenticate([{ bearerAuth: true, oauth2: true }]);
+    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
     return req.callAsJson(siteInfoResponseSchema, requestOptions);
   }
 }

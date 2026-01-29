@@ -12,27 +12,27 @@ import {
 } from './authentication.js';
 import { Configuration } from './configuration.js';
 import { OAuthToken } from './models/oAuthToken.js';
-import { Oauth2Manager } from './oauth2Manager.js';
+import { ThirdpartytokenManager } from './thirdpartytokenManager.js';
 
 export function createAuthProviderFromConfig(
   config: Partial<Configuration>,
-  oauth2: () => Oauth2Manager | undefined
+  thirdpartytoken: () => ThirdpartytokenManager | undefined
 ) {
   const authConfig = {
     bearerAuth:
       config.bearerAuthCredentials &&
       accessTokenAuthenticationProvider(config.bearerAuthCredentials),
-    oauth2:
-      config.oauth2Credentials &&
+    thirdpartytoken:
+      config.thirdpartytokenCredentials &&
       requestAuthenticationProvider(
-        config.oauth2Credentials.oAuthToken,
-        oauth2TokenProvider(
-          oauth2,
-          config.oauth2Credentials.oAuthTokenProvider
+        config.thirdpartytokenCredentials.oAuthToken,
+        thirdpartytokenTokenProvider(
+          thirdpartytoken,
+          config.thirdpartytokenCredentials.oAuthTokenProvider
         ),
-        config.oauth2Credentials.oAuthOnTokenUpdate,
+        config.thirdpartytokenCredentials.oAuthOnTokenUpdate,
         {
-          clockSkew: config.oauth2Credentials.oAuthClockSkew,
+          clockSkew: config.thirdpartytokenCredentials.oAuthClockSkew,
         } as OAuthConfiguration
       ),
   };
@@ -43,17 +43,17 @@ export function createAuthProviderFromConfig(
   >(authConfig);
 }
 
-function oauth2TokenProvider(
-  oauth2: () => Oauth2Manager | undefined,
+function thirdpartytokenTokenProvider(
+  thirdpartytoken: () => ThirdpartytokenManager | undefined,
   defaultProvider:
     | ((
         lastOAuthToken: OAuthToken | undefined,
-        authManager: Oauth2Manager
+        authManager: ThirdpartytokenManager
       ) => Promise<OAuthToken>)
     | undefined
 ): ((token: OAuthToken | undefined) => Promise<OAuthToken>) | undefined {
   return (token: OAuthToken | undefined) => {
-    const manager = oauth2();
+    const manager = thirdpartytoken();
     if (manager === undefined) {
       throw Error('Unable to find the OAuthManager instance');
     }

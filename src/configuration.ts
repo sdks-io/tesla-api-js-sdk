@@ -7,11 +7,10 @@
 import { HttpClientOptions } from './clientAdapter.js';
 import { LogLevel, PartialLoggingOptions } from './core.js';
 import {
-  OAuthScopeOauth2,
-  oAuthScopeOauth2Schema,
-} from './models/oAuthScopeOauth2.js';
+  OAuthScopeThirdpartytoken,
+  oAuthScopeThirdpartytokenSchema,
+} from './models/oAuthScopeThirdpartytoken.js';
 import { OAuthToken } from './models/oAuthToken.js';
-import { Oauth2Manager } from './oauth2Manager.js';
 import {
   anyOf,
   array,
@@ -25,6 +24,7 @@ import {
   stringEnum,
   validateAndMap,
 } from './schema.js';
+import { ThirdpartytokenManager } from './thirdpartytokenManager.js';
 
 /** An interface for all configuration parameters required by the SDK. */
 export interface Configuration {
@@ -33,15 +33,15 @@ export interface Configuration {
   bearerAuthCredentials?: {
     accessToken: string;
   };
-  oauth2Credentials?: {
+  thirdpartytokenCredentials?: {
     oAuthClientId: string;
     oAuthClientSecret: string;
     oAuthRedirectUri: string;
     oAuthToken?: OAuthToken;
-    oAuthScopes?: OAuthScopeOauth2[];
+    oAuthScopes?: OAuthScopeThirdpartytoken[];
     oAuthTokenProvider?: (
       lastOAuthToken: OAuthToken | undefined,
-      authManager: Oauth2Manager
+      authManager: ThirdpartytokenManager
     ) => Promise<OAuthToken>;
     oAuthOnTokenUpdate?: (token: OAuthToken) => void;
     oAuthClockSkew?: number;
@@ -86,17 +86,17 @@ export namespace Configuration {
     }
 
     if (
-      envVariables.OAUTH_2_O_AUTH_CLIENT_ID &&
-      envVariables.OAUTH_2_O_AUTH_CLIENT_SECRET &&
-      envVariables.OAUTH_2_O_AUTH_REDIRECT_URI
+      envVariables.THIRDPARTYTOKEN_O_AUTH_CLIENT_ID &&
+      envVariables.THIRDPARTYTOKEN_O_AUTH_CLIENT_SECRET &&
+      envVariables.THIRDPARTYTOKEN_O_AUTH_REDIRECT_URI
     ) {
-      config.oauth2Credentials = {
-        oAuthClientId: envVariables.OAUTH_2_O_AUTH_CLIENT_ID,
-        oAuthClientSecret: envVariables.OAUTH_2_O_AUTH_CLIENT_SECRET,
-        oAuthRedirectUri: envVariables.OAUTH_2_O_AUTH_REDIRECT_URI,
-        oAuthToken: envVariables.OAUTH_2_O_AUTH_TOKEN,
-        oAuthScopes: envVariables.OAUTH_2_O_AUTH_SCOPES,
-        oAuthClockSkew: envVariables.OAUTH_2_O_AUTH_CLOCK_SKEW,
+      config.thirdpartytokenCredentials = {
+        oAuthClientId: envVariables.THIRDPARTYTOKEN_O_AUTH_CLIENT_ID,
+        oAuthClientSecret: envVariables.THIRDPARTYTOKEN_O_AUTH_CLIENT_SECRET,
+        oAuthRedirectUri: envVariables.THIRDPARTYTOKEN_O_AUTH_REDIRECT_URI,
+        oAuthToken: envVariables.THIRDPARTYTOKEN_O_AUTH_TOKEN,
+        oAuthScopes: envVariables.THIRDPARTYTOKEN_O_AUTH_SCOPES,
+        oAuthClockSkew: envVariables.THIRDPARTYTOKEN_O_AUTH_CLOCK_SKEW,
       };
     }
 
@@ -186,14 +186,17 @@ const configurationSchema: Schema<Partial<Configuration>> = object({
     'bearerAuthCredentials',
     optional(object({ accessToken: ['accessToken', string()] })),
   ],
-  oauth2Credentials: [
-    'oauth2Credentials',
+  thirdpartytokenCredentials: [
+    'thirdpartytokenCredentials',
     optional(
       object({
         oAuthClientId: ['oAuthClientId', string()],
         oAuthClientSecret: ['oAuthClientSecret', string()],
         oAuthRedirectUri: ['oAuthRedirectUri', string()],
-        oAuthScopes: ['oAuthScopes', optional(array(oAuthScopeOauth2Schema))],
+        oAuthScopes: [
+          'oAuthScopes',
+          optional(array(oAuthScopeThirdpartytokenSchema)),
+        ],
         oAuthClockSkew: ['oAuthClockSkew', optional(number())],
       })
     ),

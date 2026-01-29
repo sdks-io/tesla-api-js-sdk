@@ -5,7 +5,7 @@
  */
 
 import { createAuthProviderFromConfig } from './authProvider.js';
-import { Oauth2Manager } from './oauth2Manager.js';
+import { ThirdpartytokenManager } from './thirdpartytokenManager.js';
 import {
   AuthParams,
   ClientInterface,
@@ -39,7 +39,7 @@ export class Client implements ClientInterface {
   private _loggingOp: LoggingOptions;
   private _requestBuilderFactory: SdkRequestBuilderFactory;
   private _userAgent: string;
-  public oauth2Manager?: Oauth2Manager;
+  public thirdpartytokenManager?: ThirdpartytokenManager;
 
   constructor(config?: Partial<Configuration>) {
     this._config = {
@@ -61,11 +61,14 @@ export class Client implements ClientInterface {
         ? this._config.httpClientOptions.timeout
         : this._config.timeout;
     this._userAgent = updateUserAgent(
-      'TypeScript SDK, Version: 1.0.1, on OS {os-info}'
+      'TypeScript SDK, Version: 1.0.2, on OS {os-info}'
     );
     this._requestBuilderFactory = createRequestHandlerFactory(
       (server) => getBaseUri(server, this._config),
-      createAuthProviderFromConfig(this._config, () => this.oauth2Manager),
+      createAuthProviderFromConfig(
+        this._config,
+        () => this.thirdpartytokenManager
+      ),
       new HttpClient(AbortError, {
         timeout: this._timeout,
         clientConfigOverrides: this._config.unstable_httpClientOptions,
@@ -81,9 +84,9 @@ export class Client implements ClientInterface {
       this._retryConfig,
       this._loggingOp
     );
-    if (this._config.oauth2Credentials) {
-      this.oauth2Manager = new Oauth2Manager(
-        this._config.oauth2Credentials,
+    if (this._config.thirdpartytokenCredentials) {
+      this.thirdpartytokenManager = new ThirdpartytokenManager(
+        this._config.thirdpartytokenCredentials,
         getBaseUri('auth server', this._config),
         this
       );
@@ -189,5 +192,5 @@ function withUserAgent(userAgent: string) {
 }
 
 function withAuthenticationByDefault(rb: SdkRequestBuilder) {
-  rb.authenticate([{ bearerAuth: true, oauth2: true }]);
+  rb.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
 }

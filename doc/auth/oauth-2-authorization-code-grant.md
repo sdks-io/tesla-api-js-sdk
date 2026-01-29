@@ -3,7 +3,7 @@
 
 
 
-Documentation for accessing and setting credentials for oauth2.
+Documentation for accessing and setting credentials for thirdpartytoken.
 
 ## Auth Credentials
 
@@ -13,14 +13,14 @@ Documentation for accessing and setting credentials for oauth2.
 | OAuthClientSecret | `string` | OAuth 2 Client Secret | `oAuthClientSecret` |
 | OAuthRedirectUri | `string` | OAuth 2 Redirection endpoint or Callback Uri | `oAuthRedirectUri` |
 | OAuthToken | `OAuthToken` | Object for storing information about the OAuth token | `oAuthToken` |
-| OAuthScopes | `OAuthScopeOauth2[]` | List of scopes that apply to the OAuth token | `oAuthScopes` |
+| OAuthScopes | `OAuthScopeThirdpartytoken[]` | List of scopes that apply to the OAuth token | `oAuthScopes` |
 | OAuthClockSkew | `number` | Clock skew time in seconds applied while checking the OAuth Token expiry. | `clockSkew` |
-| OAuthTokenProvider | `(lastOAuthToken: OAuthToken \| undefined, authManager: Oauth2Manager) => Promise<OAuthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oAuthTokenProvider` |
+| OAuthTokenProvider | `(lastOAuthToken: OAuthToken \| undefined, authManager: ThirdpartytokenManager) => Promise<OAuthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oAuthTokenProvider` |
 | OAuthOnTokenUpdate | `(token: OAuthToken) => void` | Registers a callback for token update event. | `oAuthOnTokenUpdate` |
 
 
 
-**Note:** Auth credentials can be set using `oauth2Credentials` object in the client.
+**Note:** Auth credentials can be set using `thirdpartytokenCredentials` object in the client.
 
 ## Usage Example
 
@@ -29,16 +29,16 @@ Documentation for accessing and setting credentials for oauth2.
 You must initialize the client with *OAuth 2.0 Authorization Code Grant* credentials as shown in the following code snippet.
 
 ```ts
-import { Client, OAuthScopeOauth2 } from 'tesla-api-sdk';
+import { Client, OAuthScopeThirdpartytoken } from 'tesla-api-sdk';
 
 const client = new Client({
-  oauth2Credentials: {
+  thirdpartytokenCredentials: {
     oAuthClientId: 'OAuthClientId',
     oAuthClientSecret: 'OAuthClientSecret',
     oAuthRedirectUri: 'OAuthRedirectUri',
     oAuthScopes: [
-      OAuthScopeOauth2.Openid,
-      OAuthScopeOauth2.OfflineAccess
+      OAuthScopeThirdpartytoken.Openid,
+      OAuthScopeThirdpartytoken.OfflineAccess
     ]
   },
 });
@@ -53,7 +53,7 @@ Your application must obtain user authorization before it can execute an endpoin
 To obtain user's consent, you must redirect the user to the authorization page.The `buildAuthorizationUrl()` method creates the URL to the authorization page. You must have initialized the client with scopes for which you need permission to access.
 
 ```ts
-const authUrl = client.oauth2Manager?.buildAuthorizationUrl();
+const authUrl = client.thirdpartytokenManager?.buildAuthorizationUrl();
 ```
 
 ### 3\. Handle the OAuth server response
@@ -78,11 +78,11 @@ After the server receives the code, it can exchange this for an *access token*. 
 
 ```ts
 try {
-  const token = await client.oauth2Manager?.fetchToken(authorizationCode);
+  const token = await client.thirdpartytokenManager?.fetchToken(authorizationCode);
   if (token) {
     client.withConfiguration({
-      oauth2Credentials: {
-        ...config.oauth2Credentials,
+      thirdpartytokenCredentials: {
+        ...config.thirdpartytokenCredentials,
         oAuthToken: token
       }
     });
@@ -94,7 +94,7 @@ try {
 
 ### Scopes
 
-Scopes enable your application to only request access to the resources it needs while enabling users to control the amount of access they grant to your application. Available scopes are defined in the [`OAuthScopeOauth2`](../../doc/models/o-auth-scope-oauth-2.md) enumeration.
+Scopes enable your application to only request access to the resources it needs while enabling users to control the amount of access they grant to your application. Available scopes are defined in the [`OAuthScopeThirdpartytoken`](../../doc/models/o-auth-scope-thirdpartytoken.md) enumeration.
 
 | Scope Name | Description |
 |  --- | --- |
@@ -116,7 +116,7 @@ An access token may expire after sometime. To extend its lifetime, you must refr
 
 ```ts
 try {
-  const token = await client.oauth2Manager?.refreshToken();
+  const token = await client.thirdpartytokenManager?.refreshToken();
 } catch(error) {
   // handle error
 }
@@ -138,8 +138,8 @@ To authorize a client using a stored access token, just set the access token in 
 
 ```ts
 const newClient = client.withConfiguration({
-  oauth2Credentials: {
-    ...config.oauth2Credentials,
+  thirdpartytokenCredentials: {
+    ...config.thirdpartytokenCredentials,
     oAuthToken: token
   }
 });
@@ -152,7 +152,7 @@ const newClient = client.withConfiguration({
 ```ts
 import {
   Client,
-  OAuthScopeOauth2,
+  OAuthScopeThirdpartytoken,
   OAuthToken,
 } from 'tesla-api-sdk';
 
@@ -169,13 +169,13 @@ async function loadTokenFromDatabase(): Promise<OAuthToken | undefined> {
 
 // create a new client from configuration
 const client = new Client({
-  oauth2Credentials: {
+  thirdpartytokenCredentials: {
     oAuthClientId: 'OAuthClientId',
     oAuthClientSecret: 'OAuthClientSecret',
     oAuthRedirectUri: 'OAuthRedirectUri',
     oAuthScopes: [
-      OAuthScopeOauth2.Openid,
-      OAuthScopeOauth2.OfflineAccess
+      OAuthScopeThirdpartytoken.Openid,
+      OAuthScopeThirdpartytoken.OfflineAccess
     ]
   },
 });
@@ -185,8 +185,8 @@ const previousToken = await loadTokenFromDatabase();
 if (previousToken) {
   // restore previous access token and update the cloned configuration with the token
   client.withConfiguration({
-    oauth2Credentials: {
-      ...config.oauth2Credentials,
+    thirdpartytokenCredentials: {
+      ...config.thirdpartytokenCredentials,
       oAuthToken: previousToken
     }
   });

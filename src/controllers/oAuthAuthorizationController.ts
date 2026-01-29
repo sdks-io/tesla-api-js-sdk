@@ -19,7 +19,7 @@ export class OAuthAuthorizationController extends BaseController {
    * @param redirectUri   Redirect Uri
    * @return Response from the API call
    */
-  async requestTokenOauth2(
+  async requestTokenThirdpartytoken(
     authorization: string,
     code: string,
     redirectUri: string,
@@ -58,7 +58,7 @@ export class OAuthAuthorizationController extends BaseController {
    * @param scope         Requested scopes as a space-delimited list.
    * @return Response from the API call
    */
-  async refreshTokenOauth2(
+  async refreshTokenThirdpartytoken(
     authorization: string,
     refreshToken: string,
     scope?: string,

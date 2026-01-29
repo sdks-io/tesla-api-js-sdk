@@ -11,7 +11,7 @@ The following parameters are configurable for the API Client:
 | unstableHttpClientOptions | `any` | Unstable configurable http client options. |
 | logging | [`PartialLoggingOptions`](../doc/partial-logging-options.md) | Logging Configuration to enable logging |
 | bearerAuthCredentials | [`BearerAuthCredentials`](auth/oauth-2-bearer-token.md) | The credential object for bearerAuth |
-| oauth2Credentials | [`Oauth2Credentials`](auth/oauth-2-authorization-code-grant.md) | The credential object for oauth2 |
+| thirdpartytokenCredentials | [`ThirdpartytokenCredentials`](auth/oauth-2-authorization-code-grant.md) | The credential object for thirdpartytoken |
 
 The API client can be initialized as follows:
 
@@ -22,20 +22,20 @@ import {
   Client,
   Environment,
   LogLevel,
-  OAuthScopeOauth2,
+  OAuthScopeThirdpartytoken,
 } from 'tesla-api-sdk';
 
 const client = new Client({
   bearerAuthCredentials: {
     accessToken: 'AccessToken'
   },
-  oauth2Credentials: {
+  thirdpartytokenCredentials: {
     oAuthClientId: 'OAuthClientId',
     oAuthClientSecret: 'OAuthClientSecret',
     oAuthRedirectUri: 'OAuthRedirectUri',
     oAuthScopes: [
-      OAuthScopeOauth2.Openid,
-      OAuthScopeOauth2.OfflineAccess
+      OAuthScopeThirdpartytoken.Openid,
+      OAuthScopeThirdpartytoken.OfflineAccess
     ]
   },
   timeout: 0,

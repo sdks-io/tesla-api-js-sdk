@@ -45,7 +45,7 @@ const client = Client.fromJsonConfig(JSON.stringify(configModule.default));
   "bearerAuthCredentials": {
     "accessToken": "accesstoken"
   },
-  "oauth2Credentials": {
+  "thirdpartytokenCredentials": {
     "oAuthClientId": "oauthclientid",
     "oAuthClientSecret": "oauthclientsecret",
     "oAuthRedirectUri": "oauthredirecturi",

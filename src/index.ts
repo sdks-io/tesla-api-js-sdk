@@ -20,7 +20,7 @@ export {
   ConsoleLogger,
 } from './core.js';
 export * from './defaultConfiguration.js';
-export * from './oauth2Manager.js';
+export * from './thirdpartytokenManager.js';
 export * from './controllers/chargingController.js';
 export * from './controllers/energyController.js';
 export * from './controllers/oAuthAuthorizationController.js';
@@ -80,7 +80,7 @@ export type { Location1 } from './models/location1.js';
 export type { MeResponse } from './models/meResponse.js';
 export type { MobileEnabled } from './models/mobileEnabled.js';
 export { OAuthProviderError } from './models/oAuthProviderError.js';
-export { OAuthScopeOauth2 } from './models/oAuthScopeOauth2.js';
+export { OAuthScopeThirdpartytoken } from './models/oAuthScopeThirdpartytoken.js';
 export type { OAuthToken } from './models/oAuthToken.js';
 export type { OffGridVehicleChargingReserveRequest } from './models/offGridVehicleChargingReserveRequest.js';
 export type { OperationRequest } from './models/operationRequest.js';
