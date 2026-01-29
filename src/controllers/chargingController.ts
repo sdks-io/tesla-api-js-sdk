@@ -26,7 +26,7 @@ export class ChargingController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ChargingHistoryResponse>> {
     const req = this.createRequest('GET', '/api/1/dx/charging/history');
-    req.authenticate([{ bearerAuth: true }]);
+    req.authenticate([{ bearerAuth: true, oauth2: true }]);
     return req.callAsJson(chargingHistoryResponseSchema, requestOptions);
   }
 
@@ -43,7 +43,7 @@ export class ChargingController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ id: [id, string()] });
     req.appendTemplatePath`/api/1/dx/charging/invoice/${mapped.id}`;
-    req.authenticate([{ bearerAuth: true }]);
+    req.authenticate([{ bearerAuth: true, oauth2: true }]);
     return req.callAsJson(unknown(), requestOptions);
   }
 
@@ -56,7 +56,7 @@ export class ChargingController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<ChargingSessionsResponse>> {
     const req = this.createRequest('GET', '/api/1/dx/charging/sessions');
-    req.authenticate([{ bearerAuth: true }]);
+    req.authenticate([{ bearerAuth: true, oauth2: true }]);
     return req.callAsJson(chargingSessionsResponseSchema, requestOptions);
   }
 }

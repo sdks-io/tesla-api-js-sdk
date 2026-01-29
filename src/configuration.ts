@@ -6,7 +6,11 @@
 
 import { HttpClientOptions } from './clientAdapter.js';
 import { LogLevel, PartialLoggingOptions } from './core.js';
-import { OauthToken } from './models/oauthToken.js';
+import {
+  OAuthScopeOauth2,
+  oAuthScopeOauth2Schema,
+} from './models/oAuthScopeOauth2.js';
+import { OAuthToken } from './models/oAuthToken.js';
 import { Oauth2Manager } from './oauth2Manager.js';
 import {
   anyOf,
@@ -30,16 +34,17 @@ export interface Configuration {
     accessToken: string;
   };
   oauth2Credentials?: {
-    oauthClientId: string;
-    oauthClientSecret: string;
-    oauthRedirectUri: string;
-    oauthToken?: OauthToken;
-    oauthTokenProvider?: (
-      lastOAuthToken: OauthToken | undefined,
+    oAuthClientId: string;
+    oAuthClientSecret: string;
+    oAuthRedirectUri: string;
+    oAuthToken?: OAuthToken;
+    oAuthScopes?: OAuthScopeOauth2[];
+    oAuthTokenProvider?: (
+      lastOAuthToken: OAuthToken | undefined,
       authManager: Oauth2Manager
-    ) => Promise<OauthToken>;
-    oauthOnTokenUpdate?: (token: OauthToken) => void;
-    oauthClockSkew?: number;
+    ) => Promise<OAuthToken>;
+    oAuthOnTokenUpdate?: (token: OAuthToken) => void;
+    oAuthClockSkew?: number;
   };
   httpClientOptions?: Partial<HttpClientOptions>;
   unstable_httpClientOptions?: any;
@@ -81,16 +86,17 @@ export namespace Configuration {
     }
 
     if (
-      envVariables.OAUTH_2_OAUTH_CLIENT_ID &&
-      envVariables.OAUTH_2_OAUTH_CLIENT_SECRET &&
-      envVariables.OAUTH_2_OAUTH_REDIRECT_URI
+      envVariables.OAUTH_2_O_AUTH_CLIENT_ID &&
+      envVariables.OAUTH_2_O_AUTH_CLIENT_SECRET &&
+      envVariables.OAUTH_2_O_AUTH_REDIRECT_URI
     ) {
       config.oauth2Credentials = {
-        oauthClientId: envVariables.OAUTH_2_OAUTH_CLIENT_ID,
-        oauthClientSecret: envVariables.OAUTH_2_OAUTH_CLIENT_SECRET,
-        oauthRedirectUri: envVariables.OAUTH_2_OAUTH_REDIRECT_URI,
-        oauthToken: envVariables.OAUTH_2_OAUTH_TOKEN,
-        oauthClockSkew: envVariables.OAUTH_2_OAUTH_CLOCK_SKEW,
+        oAuthClientId: envVariables.OAUTH_2_O_AUTH_CLIENT_ID,
+        oAuthClientSecret: envVariables.OAUTH_2_O_AUTH_CLIENT_SECRET,
+        oAuthRedirectUri: envVariables.OAUTH_2_O_AUTH_REDIRECT_URI,
+        oAuthToken: envVariables.OAUTH_2_O_AUTH_TOKEN,
+        oAuthScopes: envVariables.OAUTH_2_O_AUTH_SCOPES,
+        oAuthClockSkew: envVariables.OAUTH_2_O_AUTH_CLOCK_SKEW,
       };
     }
 
@@ -184,10 +190,11 @@ const configurationSchema: Schema<Partial<Configuration>> = object({
     'oauth2Credentials',
     optional(
       object({
-        oauthClientId: ['oauthClientId', string()],
-        oauthClientSecret: ['oauthClientSecret', string()],
-        oauthRedirectUri: ['oauthRedirectUri', string()],
-        oauthClockSkew: ['oauthClockSkew', optional(number())],
+        oAuthClientId: ['oAuthClientId', string()],
+        oAuthClientSecret: ['oAuthClientSecret', string()],
+        oAuthRedirectUri: ['oAuthRedirectUri', string()],
+        oAuthScopes: ['oAuthScopes', optional(array(oAuthScopeOauth2Schema))],
+        oAuthClockSkew: ['oAuthClockSkew', optional(number())],
       })
     ),
   ],

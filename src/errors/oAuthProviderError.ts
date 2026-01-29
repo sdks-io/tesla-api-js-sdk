@@ -7,11 +7,11 @@
 import { ApiError } from '../core.js';
 
 /**
- * Creates an instance of OauthProvider
+ * Creates an instance of OAuthProvider
  */
-interface OauthProvider {
+interface OAuthProvider {
   /** Gets or sets error code. */
-  error: OauthProviderError;
+  error: OAuthProviderError;
   /**
    * Gets or sets human-readable text providing additional information on error.
    * Used to assist the client developer in understanding the error that occurred.
@@ -22,4 +22,4 @@ interface OauthProvider {
   additionalProperties?: Record<string, unknown>;
 }
 
-export class OauthProviderError extends ApiError<OauthProvider> {}
+export class OAuthProviderError extends ApiError<OAuthProvider> {}

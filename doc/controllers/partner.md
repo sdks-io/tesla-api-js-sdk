@@ -12,13 +12,13 @@ const partnerController = new PartnerController(client);
 
 ## Methods
 
-* [Get VINs With Fleet Telemetry Errors](../../doc/controllers/partner.md#get-vins-with-fleet-telemetry-errors)
+* [Get Vins With Fleet Telemetry Errors](../../doc/controllers/partner.md#get-vins-with-fleet-telemetry-errors)
 * [Get Recent Fleet Telemetry Errors](../../doc/controllers/partner.md#get-recent-fleet-telemetry-errors)
 * [Get Public Key for a Domain](../../doc/controllers/partner.md#get-public-key-for-a-domain)
 * [Register a Partner Account](../../doc/controllers/partner.md#register-a-partner-account)
 
 
-# Get VINs With Fleet Telemetry Errors
+# Get Vins With Fleet Telemetry Errors
 
 ```ts
 async getVinsWithFleetTelemetryErrors(
@@ -31,6 +31,12 @@ async getVinsWithFleetTelemetryErrors(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -77,6 +83,12 @@ async getRecentFleetTelemetryErrors(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -125,6 +137,12 @@ async getPublicKeyForADomain(
 |  --- | --- | --- | --- |
 | `domain` | `string` | Query, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -175,6 +193,12 @@ async registerAPartnerAccount(
 |  --- | --- | --- | --- |
 | `body` | [`RegisterPartnerRequest`](../../doc/models/register-partner-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 

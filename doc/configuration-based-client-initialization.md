@@ -46,10 +46,10 @@ const client = Client.fromJsonConfig(JSON.stringify(configModule.default));
     "accessToken": "accesstoken"
   },
   "oauth2Credentials": {
-    "oauthClientId": "oauthclientid",
-    "oauthClientSecret": "oauthclientsecret",
-    "oauthRedirectUri": "oauthredirecturi",
-    "oauthClockSkew": 0
+    "oAuthClientId": "oauthclientid",
+    "oAuthClientSecret": "oauthclientsecret",
+    "oAuthRedirectUri": "oauthredirecturi",
+    "oAuthClockSkew": 0
   },
   "httpClientOptions": {
     "timeout": 30000,

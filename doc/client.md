@@ -18,16 +18,25 @@ The API client can be initialized as follows:
 ## Code-Based Client Initialization
 
 ```ts
-import { Client, Environment, LogLevel } from 'tesla-api-sdk';
+import {
+  Client,
+  Environment,
+  LogLevel,
+  OAuthScopeOauth2,
+} from 'tesla-api-sdk';
 
 const client = new Client({
   bearerAuthCredentials: {
     accessToken: 'AccessToken'
   },
   oauth2Credentials: {
-    oauthClientId: 'OAuthClientId',
-    oauthClientSecret: 'OAuthClientSecret',
-    oauthRedirectUri: 'OAuthRedirectUri'
+    oAuthClientId: 'OAuthClientId',
+    oAuthClientSecret: 'OAuthClientSecret',
+    oAuthRedirectUri: 'OAuthRedirectUri',
+    oAuthScopes: [
+      OAuthScopeOauth2.Openid,
+      OAuthScopeOauth2.OfflineAccess
+    ]
   },
   timeout: 0,
   environment: Environment.Production,

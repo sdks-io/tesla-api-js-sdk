@@ -5,12 +5,12 @@
  */
 
 import { ApiResponse, RequestOptions } from '../core.js';
-import { OauthToken, oauthTokenSchema } from '../models/oauthToken.js';
+import { OAuthToken, oAuthTokenSchema } from '../models/oAuthToken.js';
 import { optional, string } from '../schema.js';
 import { BaseController } from './baseController.js';
-import { OauthProviderError } from '../errors/oauthProviderError.js';
+import { OAuthProviderError } from '../errors/oAuthProviderError.js';
 
-export class OauthAuthorizationController extends BaseController {
+export class OAuthAuthorizationController extends BaseController {
   /**
    * Create a new OAuth 2 token.
    *
@@ -25,7 +25,7 @@ export class OauthAuthorizationController extends BaseController {
     redirectUri: string,
     fieldParameters?: Record<string, unknown>,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<OauthToken>> {
+  ): Promise<ApiResponse<OAuthToken>> {
     const req = this.createRequest('POST', '/token');
     req.baseUrl('auth server');
     const mapped = req.prepareArgs({
@@ -40,14 +40,14 @@ export class OauthAuthorizationController extends BaseController {
       redirect_uri: mapped.redirectUri,
       ...fieldParameters,
     });
-    req.throwOn(400, OauthProviderError, 'OAuth 2 provider returned an error.');
+    req.throwOn(400, OAuthProviderError, 'OAuth 2 provider returned an error.');
     req.throwOn(
       401,
-      OauthProviderError,
+      OAuthProviderError,
       'OAuth 2 provider says client authentication failed.'
     );
     req.authenticate(false);
-    return req.callAsJson(oauthTokenSchema, requestOptions);
+    return req.callAsJson(oAuthTokenSchema, requestOptions);
   }
 
   /**
@@ -64,7 +64,7 @@ export class OauthAuthorizationController extends BaseController {
     scope?: string,
     fieldParameters?: Record<string, unknown>,
     requestOptions?: RequestOptions
-  ): Promise<ApiResponse<OauthToken>> {
+  ): Promise<ApiResponse<OAuthToken>> {
     const req = this.createRequest('POST', '/token');
     req.baseUrl('auth server');
     const mapped = req.prepareArgs({
@@ -79,13 +79,13 @@ export class OauthAuthorizationController extends BaseController {
       scope: mapped.scope,
       ...fieldParameters,
     });
-    req.throwOn(400, OauthProviderError, 'OAuth 2 provider returned an error.');
+    req.throwOn(400, OAuthProviderError, 'OAuth 2 provider returned an error.');
     req.throwOn(
       401,
-      OauthProviderError,
+      OAuthProviderError,
       'OAuth 2 provider says client authentication failed.'
     );
     req.authenticate(false);
-    return req.callAsJson(oauthTokenSchema, requestOptions);
+    return req.callAsJson(oAuthTokenSchema, requestOptions);
   }
 }

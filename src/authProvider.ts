@@ -11,7 +11,7 @@ import {
   requestAuthenticationProvider,
 } from './authentication.js';
 import { Configuration } from './configuration.js';
-import { OauthToken } from './models/oauthToken.js';
+import { OAuthToken } from './models/oAuthToken.js';
 import { Oauth2Manager } from './oauth2Manager.js';
 
 export function createAuthProviderFromConfig(
@@ -25,14 +25,14 @@ export function createAuthProviderFromConfig(
     oauth2:
       config.oauth2Credentials &&
       requestAuthenticationProvider(
-        config.oauth2Credentials.oauthToken,
+        config.oauth2Credentials.oAuthToken,
         oauth2TokenProvider(
           oauth2,
-          config.oauth2Credentials.oauthTokenProvider
+          config.oauth2Credentials.oAuthTokenProvider
         ),
-        config.oauth2Credentials.oauthOnTokenUpdate,
+        config.oauth2Credentials.oAuthOnTokenUpdate,
         {
-          clockSkew: config.oauth2Credentials.oauthClockSkew,
+          clockSkew: config.oauth2Credentials.oAuthClockSkew,
         } as OAuthConfiguration
       ),
   };
@@ -47,12 +47,12 @@ function oauth2TokenProvider(
   oauth2: () => Oauth2Manager | undefined,
   defaultProvider:
     | ((
-        lastOAuthToken: OauthToken | undefined,
+        lastOAuthToken: OAuthToken | undefined,
         authManager: Oauth2Manager
-      ) => Promise<OauthToken>)
+      ) => Promise<OAuthToken>)
     | undefined
-): ((token: OauthToken | undefined) => Promise<OauthToken>) | undefined {
-  return (token: OauthToken | undefined) => {
+): ((token: OAuthToken | undefined) => Promise<OAuthToken>) | undefined {
+  return (token: OAuthToken | undefined) => {
     const manager = oauth2();
     if (manager === undefined) {
       throw Error('Unable to find the OAuthManager instance');

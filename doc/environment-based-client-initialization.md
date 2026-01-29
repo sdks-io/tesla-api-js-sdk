@@ -49,10 +49,10 @@ ENVIRONMENT=production
 
 # Authentication Credentials
 BEARER_AUTH_ACCESS_TOKEN=accesstoken
-OAUTH_2_OAUTH_CLIENT_ID=oauthclientid
-OAUTH_2_OAUTH_CLIENT_SECRET=oauthclientsecret
-OAUTH_2_OAUTH_REDIRECT_URI=oauthredirecturi
-OAUTH_2_OAUTH_CLOCK_SKEW=0
+OAUTH_2_O_AUTH_CLIENT_ID=oauthclientid
+OAUTH_2_O_AUTH_CLIENT_SECRET=oauthclientsecret
+OAUTH_2_O_AUTH_REDIRECT_URI=oauthredirecturi
+OAUTH_2_O_AUTH_CLOCK_SKEW=0
 
 # Retry Configuration
 MAX_NUMBER_OF_RETRIES=3

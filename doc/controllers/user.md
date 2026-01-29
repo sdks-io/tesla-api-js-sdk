@@ -15,7 +15,7 @@ const userController = new UserController(client);
 * [Get Custom Feature Flags for a User](../../doc/controllers/user.md#get-custom-feature-flags-for-a-user)
 * [Get Summary of a User S Account](../../doc/controllers/user.md#get-summary-of-a-user-s-account)
 * [Get Active Orders for a User](../../doc/controllers/user.md#get-active-orders-for-a-user)
-* [Get User S Region and Fleet-Api Base URL](../../doc/controllers/user.md#get-user-s-region-and-fleet-api-base-url)
+* [Get User S Region and Fleet Api Base Url](../../doc/controllers/user.md#get-user-s-region-and-fleet-api-base-url)
 
 
 # Get Custom Feature Flags for a User
@@ -31,6 +31,12 @@ async getCustomFeatureFlagsForAUser(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -78,6 +84,12 @@ async getSummaryOfAUserSAccount(
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`MeResponse`](../../doc/models/me-response.md).
@@ -124,6 +136,12 @@ async getActiveOrdersForAUser(
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`OrdersResponse`](../../doc/models/orders-response.md).
@@ -156,7 +174,7 @@ try {
 ```
 
 
-# Get User S Region and Fleet-Api Base URL
+# Get User S Region and Fleet Api Base Url
 
 ```ts
 async getUserSRegionAndFleetApiBaseUrl(
@@ -169,6 +187,12 @@ async getUserSRegionAndFleetApiBaseUrl(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 

@@ -18,9 +18,9 @@ const energyController = new EnergyController(client);
 * [Get Live Site Status](../../doc/controllers/energy.md#get-live-site-status)
 * [Set Site Mode Autonomous or Self Consumption](../../doc/controllers/energy.md#set-site-mode-autonomous-or-self-consumption)
 * [Allow Disallow Charging From the Grid and Exporting Energy to the Grid](../../doc/controllers/energy.md#allow-disallow-charging-from-the-grid-and-exporting-energy-to-the-grid)
-* [Adjust Site S Off-Grid Vehicle Charging Reserve](../../doc/controllers/energy.md#adjust-site-s-off-grid-vehicle-charging-reserve)
+* [Adjust Site S Off Grid Vehicle Charging Reserve](../../doc/controllers/energy.md#adjust-site-s-off-grid-vehicle-charging-reserve)
 * [Update Storm Watch Participation](../../doc/controllers/energy.md#update-storm-watch-participation)
-* [Update Time-of-Use TOU Settings](../../doc/controllers/energy.md#update-time-of-use-tou-settings)
+* [Update Time of Use Tou Settings](../../doc/controllers/energy.md#update-time-of-use-tou-settings)
 * [Get User Products Vehicles Energy Sites](../../doc/controllers/energy.md#get-user-products-vehicles-energy-sites)
 * [Get Site Information Assets Settings Features](../../doc/controllers/energy.md#get-site-information-assets-settings-features)
 
@@ -42,6 +42,12 @@ async adjustSiteSBackupReserve(
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`BackupRequest`](../../doc/models/backup-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -109,6 +115,12 @@ async getBackupOrEnergyHistory(
 | `period` | `string \| undefined` | Query, Optional | - |
 | `timeZone` | `string \| undefined` | Query, Optional | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -179,6 +191,12 @@ async getWallConnectorChargingHistory(
 | `timeZone` | `string \| undefined` | Query, Optional | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ChargeHistoryResponse`](../../doc/models/charge-history-response.md).
@@ -240,6 +258,12 @@ async getLiveSiteStatus(
 | `energySiteId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`LiveStatusResponse`](../../doc/models/live-status-response.md).
@@ -291,6 +315,12 @@ async setSiteModeAutonomousOrSelfConsumption(
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`OperationRequest`](../../doc/models/operation-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -351,6 +381,12 @@ async allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(
 | `body` | `unknown \| undefined` | Body, Optional | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`GenericUpdateResponse`](../../doc/models/generic-update-response.md).
@@ -385,7 +421,7 @@ try {
 ```
 
 
-# Adjust Site S Off-Grid Vehicle Charging Reserve
+# Adjust Site S Off Grid Vehicle Charging Reserve
 
 ```ts
 async adjustSiteSOffGridVehicleChargingReserve(
@@ -402,6 +438,12 @@ async adjustSiteSOffGridVehicleChargingReserve(
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`OffGridVehicleChargingReserveRequest`](../../doc/models/off-grid-vehicle-charging-reserve-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -462,6 +504,12 @@ async updateStormWatchParticipation(
 | `body` | [`StormModeRequest`](../../doc/models/storm-mode-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`GenericUpdateResponse`](../../doc/models/generic-update-response.md).
@@ -503,7 +551,7 @@ try {
 ```
 
 
-# Update Time-of-Use TOU Settings
+# Update Time of Use Tou Settings
 
 ```ts
 async updateTimeOfUseTouSettings(
@@ -520,6 +568,12 @@ async updateTimeOfUseTouSettings(
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`TimeOfUseSettingsRequest`](../../doc/models/time-of-use-settings-request.md) | Body, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -577,6 +631,12 @@ async getUserProductsVehiclesEnergySites(
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ProductsResponse`](../../doc/models/products-response.md).
@@ -624,6 +684,12 @@ async getSiteInformationAssetsSettingsFeatures(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 

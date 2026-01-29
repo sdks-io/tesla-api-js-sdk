@@ -33,6 +33,12 @@ async getChargingHistory(
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type [`ChargingHistoryResponse`](../../doc/models/charging-history-response.md).
@@ -83,6 +89,12 @@ async getChargingInvoice(
 | `id` | `string` | Template, Required | Charging session invoice identifier |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
 
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `result` property of this instance returns the response data which is of type `unknown`.
@@ -132,6 +144,12 @@ async getChargingSessions(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `requestOptions` | `RequestOptions \| undefined` | Optional | Pass additional request options. |
+
+## Requires scope
+
+### oauth2
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 

@@ -9,13 +9,14 @@ Documentation for accessing and setting credentials for oauth2.
 
 | Name | Type | Description | Setter |
 |  --- | --- | --- | --- |
-| OAuthClientId | `string` | OAuth 2 Client ID | `oauthClientId` |
-| OAuthClientSecret | `string` | OAuth 2 Client Secret | `oauthClientSecret` |
-| OAuthRedirectUri | `string` | OAuth 2 Redirection endpoint or Callback Uri | `oauthRedirectUri` |
-| OAuthToken | `OauthToken` | Object for storing information about the OAuth token | `oauthToken` |
+| OAuthClientId | `string` | OAuth 2 Client ID | `oAuthClientId` |
+| OAuthClientSecret | `string` | OAuth 2 Client Secret | `oAuthClientSecret` |
+| OAuthRedirectUri | `string` | OAuth 2 Redirection endpoint or Callback Uri | `oAuthRedirectUri` |
+| OAuthToken | `OAuthToken` | Object for storing information about the OAuth token | `oAuthToken` |
+| OAuthScopes | `OAuthScopeOauth2[]` | List of scopes that apply to the OAuth token | `oAuthScopes` |
 | OAuthClockSkew | `number` | Clock skew time in seconds applied while checking the OAuth Token expiry. | `clockSkew` |
-| OAuthTokenProvider | `(lastOAuthToken: OauthToken \| undefined, authManager: Oauth2Manager) => Promise<OauthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oauthTokenProvider` |
-| OAuthOnTokenUpdate | `(token: OauthToken) => void` | Registers a callback for token update event. | `oauthOnTokenUpdate` |
+| OAuthTokenProvider | `(lastOAuthToken: OAuthToken \| undefined, authManager: Oauth2Manager) => Promise<OAuthToken>` | Registers a callback for oAuth Token Provider used for automatic token fetching/refreshing. | `oAuthTokenProvider` |
+| OAuthOnTokenUpdate | `(token: OAuthToken) => void` | Registers a callback for token update event. | `oAuthOnTokenUpdate` |
 
 
 
@@ -28,13 +29,17 @@ Documentation for accessing and setting credentials for oauth2.
 You must initialize the client with *OAuth 2.0 Authorization Code Grant* credentials as shown in the following code snippet.
 
 ```ts
-import { Client } from 'tesla-api-sdk';
+import { Client, OAuthScopeOauth2 } from 'tesla-api-sdk';
 
 const client = new Client({
   oauth2Credentials: {
-    oauthClientId: 'OAuthClientId',
-    oauthClientSecret: 'OAuthClientSecret',
-    oauthRedirectUri: 'OAuthRedirectUri'
+    oAuthClientId: 'OAuthClientId',
+    oAuthClientSecret: 'OAuthClientSecret',
+    oAuthRedirectUri: 'OAuthRedirectUri',
+    oAuthScopes: [
+      OAuthScopeOauth2.Openid,
+      OAuthScopeOauth2.OfflineAccess
+    ]
   },
 });
 ```
@@ -45,7 +50,7 @@ Your application must obtain user authorization before it can execute an endpoin
 
 ### 2\. Obtain user consent
 
-To obtain user's consent, you must redirect the user to the authorization page.The `buildAuthorizationUrl()` method creates the URL to the authorization page.
+To obtain user's consent, you must redirect the user to the authorization page.The `buildAuthorizationUrl()` method creates the URL to the authorization page. You must have initialized the client with scopes for which you need permission to access.
 
 ```ts
 const authUrl = client.oauth2Manager?.buildAuthorizationUrl();
@@ -78,7 +83,7 @@ try {
     client.withConfiguration({
       oauth2Credentials: {
         ...config.oauth2Credentials,
-        oauthToken: token
+        oAuthToken: token
       }
     });
   }
@@ -86,6 +91,24 @@ try {
   // handle ApiError or OAuthProviderError if needed
 }
 ```
+
+### Scopes
+
+Scopes enable your application to only request access to the resources it needs while enabling users to control the amount of access they grant to your application. Available scopes are defined in the [`OAuthScopeOauth2`](../../doc/models/o-auth-scope-oauth-2.md) enumeration.
+
+| Scope Name | Description |
+|  --- | --- |
+| `Openid` | Allow Tesla customers to sign in to the application with their Tesla credentials. |
+| `OfflineAccess` | Allow getting a refresh token without needing user to log in again. |
+| `UserData` | Contact information, home address, profile picture, and referral information. |
+| `VehicleDeviceData` | Allow access to your vehicle’s live data, service history, service scheduling data, service communications, eligible upgrades, nearby Superchargers and ownership details. |
+| `VehicleLocation` | Allow access to vehicle location information, including precise and coarse location data. |
+| `VehicleCmds` | Commands like add/remove driver, access Live Camera, unlock, wake up, remote start, and schedule software updates. |
+| `VehicleChargingCmds` | Vehicle charging history, billed amount, charging location, and commands to schedule, start, or stop charging. |
+| `VehicleSpecs` | Access detailed vehicle specifications. Partner tokens only; usable without owner authorization. |
+| `EnergyDeviceData` | Energy live status, site info, backup history, energy history, and charge history. |
+| `EnergyCmds` | Update energy settings like backup reserve percent, operation mode, and storm mode. |
+| `EnterpriseManagement` | Allow access to enterprise management functions for businesses. |
 
 ### Refreshing the token
 
@@ -117,7 +140,7 @@ To authorize a client using a stored access token, just set the access token in 
 const newClient = client.withConfiguration({
   oauth2Credentials: {
     ...config.oauth2Credentials,
-    oauthToken: token
+    oAuthToken: token
   }
 });
 ```
@@ -129,7 +152,8 @@ const newClient = client.withConfiguration({
 ```ts
 import {
   Client,
-  OauthToken,
+  OAuthScopeOauth2,
+  OAuthToken,
 } from 'tesla-api-sdk';
 
 // function for storing token to database
@@ -146,9 +170,13 @@ async function loadTokenFromDatabase(): Promise<OAuthToken | undefined> {
 // create a new client from configuration
 const client = new Client({
   oauth2Credentials: {
-    oauthClientId: 'OAuthClientId',
-    oauthClientSecret: 'OAuthClientSecret',
-    oauthRedirectUri: 'OAuthRedirectUri'
+    oAuthClientId: 'OAuthClientId',
+    oAuthClientSecret: 'OAuthClientSecret',
+    oAuthRedirectUri: 'OAuthRedirectUri',
+    oAuthScopes: [
+      OAuthScopeOauth2.Openid,
+      OAuthScopeOauth2.OfflineAccess
+    ]
   },
 });
 
@@ -159,7 +187,7 @@ if (previousToken) {
   client.withConfiguration({
     oauth2Credentials: {
       ...config.oauth2Credentials,
-      oauthToken: previousToken
+      oAuthToken: previousToken
     }
   });
 }
