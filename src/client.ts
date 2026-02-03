@@ -61,7 +61,7 @@ export class Client implements ClientInterface {
         ? this._config.httpClientOptions.timeout
         : this._config.timeout;
     this._userAgent = updateUserAgent(
-      'TypeScript SDK, Version: 1.0.3, on OS {os-info}'
+      'TypeScript SDK, Version: 1.0.4, on OS {os-info}'
     );
     this._requestBuilderFactory = createRequestHandlerFactory(
       (server) => getBaseUri(server, this._config),
@@ -192,5 +192,5 @@ function withUserAgent(userAgent: string) {
 }
 
 function withAuthenticationByDefault(rb: SdkRequestBuilder) {
-  rb.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+  rb.authenticate([{ thirdpartytoken: true }]);
 }

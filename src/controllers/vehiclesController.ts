@@ -68,7 +68,7 @@ export class VehiclesController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<Api1VehiclesResponse>> {
     const req = this.createRequest('GET', '/api/1/vehicles');
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(api1VehiclesResponseSchema, requestOptions);
   }
 
@@ -83,7 +83,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(api1VehiclesResponseGetVehicleSchema, requestOptions);
   }
 
@@ -98,7 +98,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/mobile_enabled`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(
       api1VehiclesMobileEnabledResponseSchema,
       requestOptions
@@ -116,7 +116,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/nearby_charging_sites`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(
       api1VehiclesNearbyChargingSitesResponseSchema,
       requestOptions
@@ -134,7 +134,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/vehicle_data`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(siteInfoResponseSchema, requestOptions);
   }
 
@@ -149,7 +149,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/wake_up`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(api1VehiclesWakeUpResponseSchema, requestOptions);
   }
 
@@ -164,7 +164,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vin: [vin, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vin}/specs`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(siteInfoResponseSchema, requestOptions);
   }
 
@@ -179,7 +179,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET', '/api/1/dx/vehicles/options');
     const mapped = req.prepareArgs({ vin: [vin, string()] });
     req.query('vin', mapped.vin);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(api1DxVehiclesOptionsResponseSchema, requestOptions);
   }
 
@@ -190,7 +190,7 @@ export class VehiclesController extends BaseController {
     requestOptions?: RequestOptions
   ): Promise<ApiResponse<Api1DxWarrantyDetailsResponse>> {
     const req = this.createRequest('GET', '/api/1/dx/warranty/details');
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(api1DxWarrantyDetailsResponseSchema, requestOptions);
   }
 
@@ -205,7 +205,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/drivers`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(driversResponseSchema, requestOptions);
   }
 
@@ -220,7 +220,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/drivers`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(simpleOkResponseSchema, requestOptions);
   }
 
@@ -238,7 +238,7 @@ export class VehiclesController extends BaseController {
     );
     const mapped = req.prepareArgs({ vin: [vin, string()] });
     req.query('vin', mapped.vin);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(siteInfoResponseSchema, requestOptions);
   }
 
@@ -256,7 +256,7 @@ export class VehiclesController extends BaseController {
     );
     const mapped = req.prepareArgs({ vin: [vin, string()] });
     req.query('vin', mapped.vin);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(siteInfoResponseSchema, requestOptions);
   }
 
@@ -278,7 +278,7 @@ export class VehiclesController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/dx/enterprise/v1/${mapped.vin}/payer`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.call(requestOptions);
   }
 
@@ -293,7 +293,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vin: [vin, string()] });
     req.appendTemplatePath`/api/1/dx/enterprise/v1/${mapped.vin}/roles`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -309,7 +309,7 @@ export class VehiclesController extends BaseController {
     const mapped = req.prepareArgs({ body: [body, fleetStatusRequestSchema] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -328,7 +328,7 @@ export class VehiclesController extends BaseController {
     const mapped = req.prepareArgs({ body: [body, optional(unknown())] });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -343,7 +343,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/fleet_telemetry_config`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -358,7 +358,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('DELETE');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/fleet_telemetry_config`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -379,7 +379,7 @@ export class VehiclesController extends BaseController {
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 
@@ -394,7 +394,7 @@ export class VehiclesController extends BaseController {
     const req = this.createRequest('GET');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/fleet_telemetry_errors`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(optional(unknown()), requestOptions);
   }
 }

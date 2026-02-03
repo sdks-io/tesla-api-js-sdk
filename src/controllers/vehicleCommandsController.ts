@@ -53,7 +53,7 @@ export class VehicleCommandsController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/actuate_trunk`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -75,7 +75,7 @@ export class VehicleCommandsController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/add_charge_schedule`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -97,7 +97,7 @@ export class VehicleCommandsController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/add_precondition_schedule`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -119,7 +119,7 @@ export class VehicleCommandsController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/adjust_volume`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -134,7 +134,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/auto_conditioning_start`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -149,7 +149,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/auto_conditioning_stop`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -164,7 +164,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/cancel_software_update`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -179,7 +179,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_max_range`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -194,7 +194,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_port_door_open`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -209,7 +209,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_port_door_close`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -224,7 +224,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_standard`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -239,7 +239,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_start`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -254,7 +254,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/charge_stop`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -271,7 +271,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/clear_pin_to_drive_admin`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -286,7 +286,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/door_lock`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -301,7 +301,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/door_unlock`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -318,7 +318,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/erase_user_data`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -335,7 +335,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/flash_lights`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -357,7 +357,7 @@ export class VehicleCommandsController extends BaseController {
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/guest_mode`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -372,7 +372,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/honk_horn`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 
@@ -387,7 +387,7 @@ export class VehicleCommandsController extends BaseController {
     const req = this.createRequest('POST');
     const mapped = req.prepareArgs({ vehicleTag: [vehicleTag, string()] });
     req.appendTemplatePath`/api/1/vehicles/${mapped.vehicleTag}/command/media_next_fav`;
-    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
+    req.authenticate([{ thirdpartytoken: true }]);
     return req.callAsJson(commandResponseSchema, requestOptions);
   }
 }
