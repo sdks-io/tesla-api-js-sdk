@@ -39,7 +39,7 @@ export class PartnerController extends BaseController {
       'GET',
       '/api/1/partner_accounts/fleet_telemetry_error_vins'
     );
-    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
+    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
     return req.callAsJson(backupResponseSchema, requestOptions);
   }
 
@@ -53,7 +53,7 @@ export class PartnerController extends BaseController {
       'GET',
       '/api/1/partner_accounts/fleet_telemetry_errors'
     );
-    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
+    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
     return req.callAsJson(fleetTelemetryErrorsResponseSchema, requestOptions);
   }
 
@@ -68,7 +68,7 @@ export class PartnerController extends BaseController {
     const req = this.createRequest('GET', '/api/1/partner_accounts/public_key');
     const mapped = req.prepareArgs({ domain: [domain, string()] });
     req.query('domain', mapped.domain);
-    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
+    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
     return req.callAsJson(publicKeyResponseSchema, requestOptions);
   }
 
@@ -86,7 +86,7 @@ export class PartnerController extends BaseController {
     });
     req.header('Content-Type', 'application/json');
     req.json(mapped.body);
-    req.authenticate([{ bearerAuth: true, thirdpartytoken: true }]);
+    req.authenticate([{ thirdpartytoken: true }, { bearerAuth: true }]);
     return req.callAsJson(registerPartnerResponseSchema, requestOptions);
   }
 }
