@@ -78,7 +78,14 @@ After the server receives the code, it can exchange this for an *access token*. 
 
 ```ts
 try {
-  const token = await client.thirdpartytokenManager?.fetchToken(authorizationCode);
+  const token = await client.thirdpartytokenManager?.fetchToken(
+    authorizationCode,
+    {
+      oAuthClientId: "OAuthClientId",
+      oAuthClientSecret: "OAuthClientSecret"
+    }
+  );
+
   if (token) {
     client.withConfiguration({
       thirdpartytokenCredentials: {
@@ -87,7 +94,7 @@ try {
       }
     });
   }
-} catch(error) {
+} catch (error) {
   // handle ApiError or OAuthProviderError if needed
 }
 ```
